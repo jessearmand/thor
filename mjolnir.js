@@ -58,6 +58,8 @@ process.on('message', function message(task) {
       id: task.id
     });
 
+    if (process.env.LISTENING === "passive") { return; }
+
     // Only write as long as we are allowed to send messages
     if (--task.messages) {
       write(socket, task, task.id);
