@@ -119,9 +119,9 @@ function live() {
       return count + (concurrents[id] || 0);
     }, 0);
 
-    process.stdout.write('\r'+ frames[i++ % len] +' Progress :: '.white + [
-      'Created '.white + connections.toString().green,
-      'Active '.white + active.toString().green
+    process.stdout.write('\r'+ frames[i++ % len] +' Progress :: '.grey + [
+      'Created '.grey + connections.toString().green,
+      'Active '.grey + active.toString().green
     ].join(', '));
   }, interval);
 }
