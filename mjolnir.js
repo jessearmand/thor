@@ -64,6 +64,7 @@ process.on('message', function message(task) {
     if (--task.messages) {
       write(socket, task, task.id);
     } else {
+      if (process.env.LISTENING === "active") { return; }
       socket.close();
     }
   });
