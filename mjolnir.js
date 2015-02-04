@@ -50,6 +50,13 @@ process.on('message', function message(task) {
 
     // As the `close` event is fired after the internal `_socket` is cleaned up
     // we need to do some hacky shit in order to tack the bytes send.
+
+    if (process.env.LISTENING === "passive") {
+      // Write to the socket for an interval
+      setInterval(function periodicWrite() {
+        write(socket, task, task.id);
+      }, process.env.WRITE_INTERVAL || 100);
+    }
   });
 
   socket.on('message', function message(data) {
